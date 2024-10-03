@@ -7,13 +7,14 @@ import { Track, useActiveTrack } from 'react-native-track-player'
 
 export type TracksListItemProps = {
 	track: Track
+	onTrackSelect: (track: Track) => void
 }
 
-export const TrackListItem = ({ track }: TracksListItemProps) => {
+export const TrackListItem = ({ track, onTrackSelect: handleTrackSelect }: TracksListItemProps) => {
 	const isActiveTrack = useActiveTrack()?.url === track.url
 
 	return (
-		<TouchableHighlight>
+		<TouchableHighlight onPress={() => handleTrackSelect(track)}>
 			<View style={styles.trackItemContainer}>
 				<View>
 					<FastImage

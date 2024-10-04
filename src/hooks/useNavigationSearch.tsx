@@ -8,7 +8,7 @@ const defaultSearchOptions: SearchBarProps = {
 	hideWhenScrolling: false,
 }
 
-export const useNavigationSearch = ({
+export const useNavigationSearch  = ({
 	searchBarOptions,
 }: {
 	searchBarOptions?: SearchBarProps

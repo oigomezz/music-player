@@ -1,7 +1,9 @@
+import { TrackShortcutsMenu } from '@/components/TrackShortcutsMenu'
+import { StopPropagation } from '@/components/utils/StopPropagation'
 import { unknownTrackImageUri } from '@/constants/images'
 import { colors, fontSize } from '@/constants/tokens'
 import { defaultStyles } from '@/styles'
-import { Ionicons } from '@expo/vector-icons'
+import { Entypo, Ionicons } from '@expo/vector-icons'
 import { StyleSheet, Text, TouchableHighlight, View } from 'react-native'
 import FastImage from 'react-native-fast-image'
 import LoaderKit from 'react-native-loader-kit'
@@ -12,8 +14,12 @@ export type TracksListItemProps = {
 	onTrackSelect: (track: Track) => void
 }
 
-export const TrackListItem = ({ track, onTrackSelect: handleTrackSelect }: TracksListItemProps) => {
+export const TracksListItem = ({
+	track,
+	onTrackSelect: handleTrackSelect,
+}: TracksListItemProps) => {
 	const { playing } = useIsPlaying()
+
 	const isActiveTrack = useActiveTrack()?.url === track.url
 
 	return (
@@ -74,6 +80,12 @@ export const TrackListItem = ({ track, onTrackSelect: handleTrackSelect }: Track
 							</Text>
 						)}
 					</View>
+
+					<StopPropagation>
+						<TrackShortcutsMenu track={track}>
+							<Entypo name="dots-three-horizontal" size={18} color={colors.icon} />
+						</TrackShortcutsMenu>
+					</StopPropagation>
 				</View>
 			</View>
 		</TouchableHighlight>
